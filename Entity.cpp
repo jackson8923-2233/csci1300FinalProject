@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include <iostream>
 using namespace std;
 
 Entity::Entity() {
@@ -12,37 +11,26 @@ Entity::Entity() {
 Entity::Entity(string startName, int startHealth, int startAttack) {
     name = startName;
     health = startHealth;
-    maxHealth = startHealth;
+    maxHealth = startHealth;   // start at full health
     attackPower = startAttack;
 }
 
-string Entity::getName() {
-    return name;
-}
-
-int Entity::getHealth() {
-    return health;
-}
-
-int Entity::getMaxHealth() {
-    return maxHealth;
-}
-
-int Entity::getAttackPower() {
-    return attackPower;
-}
+string Entity::getName() { return name; }
+int Entity::getHealth() { return health; }
+int Entity::getMaxHealth() { return maxHealth; }
+int Entity::getAttackPower() { return attackPower; }
 
 void Entity::takeDamage(int amount) {
     health = health - amount;
-    if (health < 0) {
-        health = 0;
-    }
+    if (health < 0) { health = 0; }   // defensive code: never let health go negative
+}
+
+void Entity::heal(int amount) {
+    health = health + amount;
+    if (health > maxHealth) { health = maxHealth; }   // never heal past the ceiling
 }
 
 bool Entity::isAlive() {
-    if (health > 0) {
-        return true;
-    } else {
-        return false;
-    }
+    if (health > 0) { return true; }
+    else { return false; }
 }

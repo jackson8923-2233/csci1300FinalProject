@@ -1,3 +1,5 @@
+// Boss: a dungeon boss. Inherits from Entity and adds the key it drops.
+
 #ifndef BOSS_H
 #define BOSS_H
 
@@ -5,7 +7,7 @@
 #include <string>
 using namespace std;
 
-class Boss : public Entity {
+class Boss : public Entity {   // Boss inherits from Entity
     private:
         string keyDropped;
 

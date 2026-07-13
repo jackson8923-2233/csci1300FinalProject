@@ -1,3 +1,5 @@
+// Entity: base class for anything that fights (hero and bosses).
+
 #ifndef ENTITY_H
 #define ENTITY_H
 
@@ -21,6 +23,7 @@ class Entity {
         int getAttackPower();
 
         void takeDamage(int amount);
+        void heal(int amount);
         bool isAlive();
 };
 
