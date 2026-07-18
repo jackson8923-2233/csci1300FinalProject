@@ -1,4 +1,4 @@
-// Entity: base class for anything that fights (hero and bosses).
+// Entity: base class for anything that fights (the hero and the bosses).
 
 #ifndef ENTITY_H
 #define ENTITY_H
@@ -21,10 +21,11 @@ class Entity {
         int getHealth();
         int getMaxHealth();
         int getAttackPower();
+        void setAttackPower(int amount);   // lets the blacksmith or seal change the hero's damage
 
         void takeDamage(int amount);
         void heal(int amount);
-        bool isAlive();
+        bool isAlive(); //important
 };
 
 #endif

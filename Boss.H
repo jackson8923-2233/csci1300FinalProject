@@ -14,7 +14,6 @@ class Boss : public Entity {   // Boss inherits from Entity
     public:
         Boss();
         Boss(string startName, int startHealth, int startAttack, string key);
-
         string getKeyDropped();
 };
 

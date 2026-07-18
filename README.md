@@ -1,51 +1,73 @@
-# CSCI 1300 Final Project
+# CSCI 1300 Final Project — The Curse of the Deep
 
 ## Theme
 
-My game is a turn-based dungeon battle game that you play in the terminal. My hero
-is stuck under a curse that will kill them after a set number of turns, so the
-whole game is a race against time: you explore a dungeon, open chests for gold,
-and fight the boss guarding it. Beating the boss gives you its key and clears the
-dungeon. The full game will have four dungeons and four keys to break the curse.
+This is a turn-based dungeon adventure game played in the terminal. You are a hero
+cursed with a slow death: a curse counter ticks down with everything you do, and
+if it reaches zero you die. To break the curse you must descend into four dungeons,
+defeat the boss of each, collect three keys, open the final door, and defeat the
+one who cursed you.
+
+This is an **alternative theme** (not the Stardew farming setting). Here is how it
+maps onto the project requirements:
+
+- **Final Community Center bundle → the three keys.** Collecting all three boss
+  keys is the collection goal that unlocks the final door.
+- **Villagers → the four tavern characters** (Cloaked Figure, Healer, Blacksmith,
+  Oracle), each of whom affects gameplay.
+- **Town locations → the Tavern hub plus the four dungeons.**
+- **JojaMart shortcut → the Cloaked Figure's seal.** Breaking the seal makes you
+  stronger but makes the curse drain twice as fast, and it changes your ending.
+- **Community-restoration ending → breaking the curse** (with a different final
+  message depending on whether you used the seal shortcut).
+
+## Goal
+
+Collect the three keys from the first three dungeon bosses, open the final door,
+and defeat the Curse-Weaver before your curse counter runs out.
 
 ## How to compile and run
 
-Open the terminal in the folder that has all my project files (make sure
-dungeon1.txt is in that folder too, because the game reads the map from it). To
-compile, type this command (it lists all my .cpp files and names the program
-"dungeon"):
+Open the terminal in the folder that has all the project files, including the four
+dungeon map files (dungeon1.txt through dungeon4.txt), because the game reads the
+maps from those files. To compile, type:
 
-g++ Entity.cpp Player.cpp Boss.cpp Game.cpp main.cpp -o dungeon
+g++ Entity.cpp Player.cpp Boss.cpp Game.cpp main.cpp -o game
 
-Then, to run the program, type:
+Then to run it, type:
 
-./dungeon
+./game
 
 ## How to play
 
-Pick "Start Game" and enter your hero's name. You move around the map with the
-keys W (up), A (left), S (down), D (right). Press I to view your inventory and
-gold, or Q to quit. Walls (#) block you. Stepping on a chest (C) gives you gold.
-Stepping on the boss (B) lets you choose to fight. Each step and each fight action
-uses up curse turns, so don't waste time. In battle you can Attack, Dodge (take no
-damage that round), or Heal (if you have a blessing). Defeat the boss before your
-curse or your health runs out.
+Start the game and enter your hero's name. You begin at the Tavern, a menu hub
+where you can talk to characters and prepare. Choose "Enter the Dungeon" to descend
+into the next dungeon (which one is decided automatically by how many keys you
+have). In a dungeon you move with W/A/S/D, press I to view your keys, or Q to
+retreat to the tavern. Walls (#) block you, chests (C) give 5 gold, and stepping on
+the boss (B) lets you choose to fight.
+
+In battle you can Attack, Dodge (take no damage that round), or Heal (if you have a
+blessing). Every step and every action drains the curse. Returning to the tavern
+restores your health, so use it to rest between dungeons. Spend gold at the Healer
+(blessings), the Blacksmith (a stronger weapon), or the Oracle (hints). The Cloaked
+Figure offers to break your seal for more power at a dangerous cost.
 
 ## Classes
 
 - **Entity** — the base class for anything that fights; stores name, health, and attack power.
-- **Player** — the hero; inherits from Entity and adds gold, the curse timer, a blessing, and an inventory.
-- **Boss** — a dungeon boss; inherits from Entity and adds the key it drops when defeated.
-- **Game** — runs the whole game: loads the map from a file, handles movement, chests, combat, and the endings.
+- **Player** — the hero; inherits from Entity and adds gold, the curse timer, a blessing, an inventory, and the key count.
+- **Boss** — a dungeon boss; inherits from Entity and adds the key it drops.
+- **Game** — runs the whole game: the intro, the tavern hub, the four characters, the dungeons (map loading, movement, combat), the seal tradeoff, and the endings.
 
 ## File input
 
-The dungeon map is stored in dungeon1.txt and read into the game when it starts.
-The map uses # for walls, . for floor, H for the hero start, B for the boss, and C
-for chests. Because the map is just a data file, future dungeons will use the same
-code with different .txt files.
+The four dungeon maps are stored in dungeon1.txt through dungeon4.txt and read into
+the game when each dungeon is entered. A map uses # for walls, . for floor, H for
+the hero start, B for the boss, and C for chests. Because each map is just a data
+file, all four dungeons run on the same code with different files.
 
 ## Extra credit
 
-I'm planning to add a shortest-path route recommendation (using BFS) that suggests
-the fewest-steps path to the boss door so I can save curse turns.
+None attempted yet. (A shortest-path route recommendation using BFS is a possible
+future addition.)

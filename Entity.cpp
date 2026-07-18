@@ -19,6 +19,7 @@ string Entity::getName() { return name; }
 int Entity::getHealth() { return health; }
 int Entity::getMaxHealth() { return maxHealth; }
 int Entity::getAttackPower() { return attackPower; }
+void Entity::setAttackPower(int amount) { attackPower = amount; }
 
 void Entity::takeDamage(int amount) {
     health = health - amount;
